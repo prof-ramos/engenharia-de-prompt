@@ -21,6 +21,14 @@ capitulos/
 ├── 11-troubleshooting.md   # Problemas comuns
 ├── 12-referencia-rapida.md # Tabelas e resumos
 │
+├── prompts-no-mundo-real/  # Casos práticos (Anthropic)
+│   ├── 00-introducao.md
+│   ├── 01-recapitulacao.md
+│   ├── 02-prompt-medico.md
+│   ├── 03-processo.md
+│   ├── 04-resumidor-chamadas.md
+│   └── 05-bot-suporte.md
+│
 └── tecnicas/               # 10 técnicas de prompting
     ├── 01-zero-shot.md
     ├── 02-few-shot.md
@@ -60,13 +68,15 @@ capitulos/
 | Entender o básico | [Introdução](capitulos/01-introducao.md) |
 | Ajustar temperatura | [Configurações](capitulos/03-configuracoes.md) |
 | Aprender técnicas | [Técnicas](capitulos/tecnicas/) |
+| Ver casos práticos | [Prompts no Mundo Real](capitulos/prompts-no-mundo-real/) |
 | Copiar templates | [Templates](capitulos/10-templates.md) |
 | Resolver problemas | [Troubleshooting](capitulos/11-troubleshooting.md) |
 | Consulta rápida | [Referência](capitulos/12-referencia-rapida.md) |
 
-## 📖 Fonte
+## 📖 Fontes
 
-Baseado no whitepaper **"Prompt Engineering"** de Lee Boontra, Google, Fevereiro de 2025.
+- Whitepaper **"Prompt Engineering"** de Lee Boontra, Google, Fevereiro 2025
+- Curso **"Real World Prompting"** da Anthropic (traduzido e adaptado)
 
 ## 📄 Licença
 
