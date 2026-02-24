@@ -3,82 +3,86 @@
 [![License](https://img.shields.io/badge/license-Educational-blue.svg)](LICENSE)
 [![Language](https://img.shields.io/badge/language-Portugu%C3%AAs-green.svg)]()
 
-Documentação completa sobre engenharia de prompt para LLMs, baseada no whitepaper do Google/Gemini e expandida com práticas adicionais.
+Documentação completa sobre engenharia de prompt para LLMs, organizada em capítulos.
 
-## 📚 Conteúdo
+## 📚 Estrutura
+
+```
+capitulos/
+├── 00-sumario.md           # Índice navegável
+├── 01-introducao.md        # O que é engenharia de prompt
+├── 02-como-llms-funcionam.md
+├── 03-configuracoes.md     # Temperatura, Top-K, Top-P
+├── tecnicas/
+│   ├── 01-zero-shot.md
+│   ├── 02-few-shot.md
+│   ├── 03-prompt-sistema.md
+│   ├── 04-prompt-papel.md
+│   ├── 05-prompt-contextual.md
+│   ├── 06-step-back.md
+│   ├── 07-cot.md           # Cadeia de Pensamento
+│   ├── 08-auto-consistencia.md
+│   ├── 09-tot.md           # Árvore de Pensamentos
+│   └── 10-react.md
+├── 05-prompting-codigo.md
+├── 06-ape.md               # Engenharia Automática
+├── 07-melhores-praticas.md
+├── 08-anti-padroes.md
+├── 09-checklist.md
+├── 10-templates.md
+├── 11-troubleshooting.md
+└── 12-referencia-rapida.md
+```
+
+## 🚀 Início Rápido
+
+1. Comece pelo [Sumário](capitulos/00-sumario.md)
+2. Leia [Introdução](capitulos/01-introducao.md)
+3. Aprenda [Configurações](capitulos/03-configuracoes.md)
+4. Explore as [Técnicas](capitulos/tecnicas/)
+
+## 📖 Conteúdo
 
 ### Fundamentos
 - Como LLMs funcionam
-- Configurações de saída (Temperatura, Top-K, Top-P)
-- Guia rápido de configurações por tipo de tarefa
+- Configurações (Temperatura, Top-K, Top-P)
 
-### Técnicas de Prompting
-1. **Zero-shot** - Prompts simples sem exemplos
-2. **Few-shot** - Aprendizado com exemplos
-3. **Prompt de Sistema** - Comportamento global
-4. **Prompt de Papel (Role)** - Identidade especializada
-5. **Prompt Contextual** - Informações específicas
-6. **Step-back** - Raciocínio por abstração
-7. **Cadeia de Pensamento (CoT)** - Raciocínio explícito
-8. **Auto-consistência** - Votação majoritária
-9. **Árvore de Pensamentos (ToT)** - Exploração ramificada
-10. **ReAct** - Raciocínio + ferramentas externas
+### 10 Técnicas de Prompting
+1. Zero-shot
+2. Few-shot
+3. Prompt de Sistema
+4. Prompt de Papel (Role)
+5. Prompt Contextual
+6. Step-back
+7. Cadeia de Pensamento (CoT)
+8. Auto-consistência
+9. Árvore de Pensamentos (ToT)
+10. ReAct
 
-### Recursos Adicionais
-- ✅ Prompting para código (escrever, explicar, traduzir, debugar)
-- ✅ Engenharia Automática de Prompts (APE)
-- ✅ 15 melhores práticas detalhadas
-- ⚠️ Anti-padrões e como evitá-los
-- ✅ Checklist de revisão de prompts
-- 📋 Templates prontos para usar
-- 🔧 Troubleshooting comum
+### Recursos
+- ✅ Prompting para código
+- ✅ 15 melhores práticas
+- ⚠️ Anti-padrões
+- ✅ Checklist de revisão
+- 📋 10 templates prontos
+- 🔧 Troubleshooting
 - 📖 Referência rápida
 
-## 📂 Arquivos
+## 🔗 Links Rápidos
 
-| Arquivo | Descrição |
-|---------|-----------|
-| [`engenharia-de-prompt.md`](engenharia-de-prompt.md) | Documentação completa (~28KB) |
+| Recurso | Link |
+|---------|------|
+| Sumário | [capitulos/00-sumario.md](capitulos/00-sumario.md) |
+| Templates | [capitulos/10-templates.md](capitulos/10-templates.md) |
+| Troubleshooting | [capitulos/11-troubleshooting.md](capitulos/11-troubleshooting.md) |
+| Referência Rápida | [capitulos/12-referencia-rapida.md](capitulos/12-referencia-rapida.md) |
 
-## 🚀 Uso Rápido
+## 📄 Fonte
 
-### Configurações Recomendadas
+Baseado no whitepaper **"Prompt Engineering"** de Lee Boonstra, Google, Fevereiro 2025.
 
-| Cenário | Temperatura | Top-P |
-|---------|-------------|-------|
-| Código/Fatos | 0 | 0.9 |
-| Classificação | 0.1 | 0.9 |
-| Conversação | 0.5 | 0.95 |
-| Criatividade | 0.8 | 0.99 |
+Versão expandida e organizada em capítulos.
 
-### Técnicas por Tarefa
-
-| Tarefa | Técnica |
-|--------|---------|
-| Classificação | Zero-shot / Few-shot |
-| Raciocínio | CoT / Step-back |
-| Criatividade | Role + Temperatura alta |
-| Código | Sistema + CoT |
-
-### Frases Mágicas
-
-```
-"Vamos pensar passo a passo."           → Ativa Chain-of-Thought
-"Responda apenas com o JSON."           → Formato estrito
-"Se não souber, diga 'Não disponível'." → Evita alucinação
-```
-
-## 📖 Fonte
-
-Baseado no whitepaper **"Prompt Engineering"** de Lee Boontra, Google, Fevereiro de 2025.
-
-Versão expandida com:
-- Mais exemplos práticos
-- Seção de anti-padrões
-- Templates prontos
-- Troubleshooting
-- Referência rápida
-
-## 📄 Licença
+## 📜 Licença
 
 Documentação para fins educacionais.
