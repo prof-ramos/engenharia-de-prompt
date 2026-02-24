@@ -37,6 +37,17 @@
 | [05 - Prompting para Código](05-prompting-codigo.md) | Escrever, explicar, traduzir, debugar |
 | [06 - Engenharia Automática](06-ape.md) | Gerar prompts automaticamente |
 
+### Prompts no Mundo Real
+
+| Capítulo | Descrição |
+|----------|-----------|
+| [Introdução](prompts-no-mundo-real/00-introducao.md) | Visão geral do curso prático |
+| [01 - Recapitulação](prompts-no-mundo-real/01-recapitulacao.md) | Fundamentos essenciais |
+| [02 - Prompt Médico](prompts-no-mundo-real/02-prompt-medico.md) | Exemplo: assistente médico |
+| [03 - Processo](prompts-no-mundo-real/03-processo.md) | Framework de engenharia |
+| [04 - Resumidor](prompts-no-mundo-real/04-resumidor-chamadas.md) | Exemplo: resumo de chamadas |
+| [05 - Bot de Suporte](prompts-no-mundo-real/05-bot-suporte.md) | Exemplo: atendimento ao cliente |
+
 ### Referência
 
 | Capítulo | Descrição |
