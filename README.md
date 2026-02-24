@@ -3,86 +3,72 @@
 [![License](https://img.shields.io/badge/license-Educational-blue.svg)](LICENSE)
 [![Language](https://img.shields.io/badge/language-Portugu%C3%AAs-green.svg)]()
 
-Documentação completa sobre engenharia de prompt para LLMs, organizada em capítulos.
+Documentação completa sobre engenharia de prompt para LLMs, baseada no whitepaper do Google/Gemini e expandida com práticas adicionais.
 
 ## 📚 Estrutura
 
 ```
 capitulos/
-├── 00-sumario.md           # Índice navegável
+├── 00-sumario.md           # Índice geral
 ├── 01-introducao.md        # O que é engenharia de prompt
 ├── 02-como-llms-funcionam.md
 ├── 03-configuracoes.md     # Temperatura, Top-K, Top-P
-├── tecnicas/
-│   ├── 01-zero-shot.md
-│   ├── 02-few-shot.md
-│   ├── 03-prompt-sistema.md
-│   ├── 04-prompt-papel.md
-│   ├── 05-prompt-contextual.md
-│   ├── 06-step-back.md
-│   ├── 07-cot.md           # Cadeia de Pensamento
-│   ├── 08-auto-consistencia.md
-│   ├── 09-tot.md           # Árvore de Pensamentos
-│   └── 10-react.md
-├── 05-prompting-codigo.md
-├── 06-ape.md               # Engenharia Automática
-├── 07-melhores-praticas.md
-├── 08-anti-padroes.md
-├── 09-checklist.md
-├── 10-templates.md
-├── 11-troubleshooting.md
-└── 12-referencia-rapida.md
+├── 05-prompting-codigo.md  # Código: escrever, explicar, debugar
+├── 06-ape.md               # Engenharia automática
+├── 07-melhores-praticas.md # 15 práticas essenciais
+├── 08-anti-padroes.md      # O que evitar
+├── 09-checklist.md         # Validação
+├── 10-templates.md         # Prontos para usar
+├── 11-troubleshooting.md   # Problemas comuns
+├── 12-referencia-rapida.md # Tabelas e resumos
+│
+└── tecnicas/               # 10 técnicas de prompting
+    ├── 01-zero-shot.md
+    ├── 02-few-shot.md
+    ├── 03-prompt-sistema.md
+    ├── 04-prompt-papel.md
+    ├── 05-prompt-contextual.md
+    ├── 06-step-back.md
+    ├── 07-cot.md           # Cadeia de Pensamento
+    ├── 08-auto-consistencia.md
+    ├── 09-tot.md           # Árvore de Pensamentos
+    └── 10-react.md         # Raciocinar e Agir
 ```
 
-## 🚀 Início Rápido
+## 🚀 Uso Rápido
 
-1. Comece pelo [Sumário](capitulos/00-sumario.md)
-2. Leia [Introdução](capitulos/01-introducao.md)
-3. Aprenda [Configurações](capitulos/03-configuracoes.md)
-4. Explore as [Técnicas](capitulos/tecnicas/)
+### Configurações por Tarefa
 
-## 📖 Conteúdo
+| Cenário | Temperatura | Top-P |
+|---------|-------------|-------|
+| Código/Fatos | 0 | 0.9 |
+| Classificação | 0.1 | 0.9 |
+| Conversação | 0.5 | 0.95 |
+| Criatividade | 0.8 | 0.99 |
 
-### Fundamentos
-- Como LLMs funcionam
-- Configurações (Temperatura, Top-K, Top-P)
+### Frases Mágicas
 
-### 10 Técnicas de Prompting
-1. Zero-shot
-2. Few-shot
-3. Prompt de Sistema
-4. Prompt de Papel (Role)
-5. Prompt Contextual
-6. Step-back
-7. Cadeia de Pensamento (CoT)
-8. Auto-consistência
-9. Árvore de Pensamentos (ToT)
-10. ReAct
+```
+"Vamos pensar passo a passo."     → Ativa CoT
+"Responda apenas com o JSON."    → Formato estrito
+"Se não souber, diga 'Não disponível'." → Evita alucinação
+```
 
-### Recursos
-- ✅ Prompting para código
-- ✅ 15 melhores práticas
-- ⚠️ Anti-padrões
-- ✅ Checklist de revisão
-- 📋 10 templates prontos
-- 🔧 Troubleshooting
-- 📖 Referência rápida
+### Navegação Rápida
 
-## 🔗 Links Rápidos
+| Quero... | Ir para |
+|----------|---------|
+| Entender o básico | [Introdução](capitulos/01-introducao.md) |
+| Ajustar temperatura | [Configurações](capitulos/03-configuracoes.md) |
+| Aprender técnicas | [Técnicas](capitulos/tecnicas/) |
+| Copiar templates | [Templates](capitulos/10-templates.md) |
+| Resolver problemas | [Troubleshooting](capitulos/11-troubleshooting.md) |
+| Consulta rápida | [Referência](capitulos/12-referencia-rapida.md) |
 
-| Recurso | Link |
-|---------|------|
-| Sumário | [capitulos/00-sumario.md](capitulos/00-sumario.md) |
-| Templates | [capitulos/10-templates.md](capitulos/10-templates.md) |
-| Troubleshooting | [capitulos/11-troubleshooting.md](capitulos/11-troubleshooting.md) |
-| Referência Rápida | [capitulos/12-referencia-rapida.md](capitulos/12-referencia-rapida.md) |
+## 📖 Fonte
 
-## 📄 Fonte
+Baseado no whitepaper **"Prompt Engineering"** de Lee Boontra, Google, Fevereiro de 2025.
 
-Baseado no whitepaper **"Prompt Engineering"** de Lee Boonstra, Google, Fevereiro 2025.
-
-Versão expandida e organizada em capítulos.
-
-## 📜 Licença
+## 📄 Licença
 
 Documentação para fins educacionais.

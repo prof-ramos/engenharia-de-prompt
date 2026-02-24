@@ -4,210 +4,116 @@
 
 ---
 
-Problemas comuns e como resolver.
+## Respostas Muito Longas
 
----
+**Causas:**
+- Sem limite de tokens
+- Prompt vago
+- Temperatura alta
 
-## Problema: Respostas muito longas
-
-### Sintomas
-- Modelo ignora pedidos de brevidade
-- Texto excessivamente verboso
-
-### Soluções
-
-1. **Seja explícito sobre o limite**
+**Soluções:**
 ```
-Responda em EXATAMENTE 50 palavras. Não ultrapasse.
-```
-
-2. **Use formato estruturado**
-```
-Responda em 3 bullet points de no máximo 15 palavras cada.
-```
-
-3. **Reduza max_tokens**
-```
-max_tokens = 100
-```
-
-4. **Adicione consequência**
-```
-Se ultrapassar 100 palavras, a resposta será rejeitada.
+✅ "Seja conciso (máx. 100 palavras)"
+✅ Reduza max_tokens
+✅ Peça bullet points
+✅ Temperatura mais baixa
 ```
 
 ---
 
-## Problema: Respostas muito curtas
+## Respostas Muito Curtas
 
-### Sintomas
-- Respostas incompletas
-- Falta de detalhes
+**Causas:**
+- max_tokens muito baixo
+- Sem solicitação de detalhes
 
-### Soluções
-
-1. **Peça explicitamente**
+**Soluções:**
 ```
-Responda em detalhes, com no mínimo 200 palavras.
-```
-
-2. **Aumente max_tokens**
-```
-max_tokens = 1000
-```
-
-3. **Use CoT**
-```
-Explique seu raciocínio passo a passo antes de responder.
+✅ "Responda em detalhes"
+✅ Aumente max_tokens
+✅ "Explique seu raciocínio"
+✅ Use CoT
 ```
 
 ---
 
-## Problema: Formato inconsistente
+## Formato Inconsistente
 
-### Sintomas
-- JSON malformado
-- Estrutura varia entre execuções
+**Causas:**
+- Sem exemplos
+- Formato mal especificado
 
-### Soluções
-
-1. **Use few-shot com exemplos perfeitos**
+**Soluções:**
 ```
-EXEMPLO:
-Input: "texto"
-Output: {"campo": "valor"}
-```
-
-2. **Seja explícito sobre o formato**
-```
-Retorne APENAS JSON válido, sem markdown, sem explicações.
-```
-
-3. **Use temperatura baixa**
-```
-temperature = 0
-```
-
-4. **Adicione validação no prompt**
-```
-Antes de responder, verifique se o JSON é válido.
+✅ Adicione exemplos few-shot
+✅ Use delimitadores no formato
+✅ "Retorne APENAS o JSON"
+✅ Seja mais específico
 ```
 
 ---
 
-## Problema: Alucinações
+## Alucinações
 
-### Sintomas
-- Informações inventadas
-- Fatos incorretos apresentados como verdade
+**Causas:**
+- Sem restrições
+- Temperatura alta
+- Modelo inventa
 
-### Soluções
-
-1. **Limite ao texto fornecido**
+**Soluções:**
 ```
-Responda APENAS com informações explicitamente presentes no texto.
-Se a informação não estiver no texto, responda "NÃO DISPONÍVEL".
-```
-
-2. **Peça citações**
-```
-Para cada afirmação, cite a frase exata do texto que a embasa.
-```
-
-3. **Reduza temperatura**
-```
-temperature = 0 - 0.2
-```
-
-4. **Peça para admitir ignorância**
-```
-Se não tiver certeza, diga "Não tenho informação suficiente".
+✅ "Responda apenas com informações do texto"
+✅ "Se não souber, diga 'Não disponível'"
+✅ Reduza temperatura (0-0.3)
+✅ Peça citações/fontes
 ```
 
 ---
 
-## Problema: Loop de repetição
+## Loop de Repetição
 
-### Sintomas
-- Modelo repete a mesma palavra/frase
-- Texto entra em loop infinito
+**Causas:**
+- Temperatura muito baixa OU muito alta
+- Top-K muito baixo
 
-### Soluções
-
-1. **Ajuste temperatura**
+**Soluções:**
 ```
-Evite extremos (0 ou >1). Use 0.3-0.7.
-```
-
-2. **Reduza top-K**
-```
-top_k = 20-40
-```
-
-3. **Limite max_tokens**
-```
-max_tokens = valor razoável para a tarefa
-```
-
-4. **Reformule o prompt**
-```
-Adicione instrução explícita para variar o texto.
+✅ Ajuste temperatura para 0.3-0.7
+✅ Aumente top-K
+✅ Limite max_tokens
+✅ Reformule o prompt
 ```
 
 ---
 
-## Problema: Ignora instruções
+## Ignora Instruções
 
-### Sintomas
-- Modelo não segue formato solicitado
-- Instruções são parcialmente seguidas
+**Causas:**
+- Instruções no lugar errado
+- Prompt muito longo
+- Instruções conflitantes
 
-### Soluções
-
-1. **Coloque instruções no início**
+**Soluções:**
 ```
-IMPORTANTE: [instrução crítica]
-
-[resto do prompt]
-```
-
-2. **Use prompt de sistema**
-```
-System: Você SEMPRE responde em JSON.
-User: [pergunta]
-```
-
-3. **Repita a instrução**
-```
-No início: Responda em JSON.
-No final: Lembre-se: responda APENAS em JSON.
-```
-
-4. **Use delimitadores**
-```
-INSTRUÇÃO:
----
-[instrução]
----
-
-CONTEÚDO:
----
-[conteúdo]
----
+✅ Coloque instruções no início
+✅ Use prompt de sistema
+✅ Seja mais explícito
+✅ Use delimitadores
+✅ Reduza tamanho do prompt
 ```
 
 ---
 
-## Resumo
+## Tabela Resumo
 
-| Problema | Causa Provável | Solução Principal |
-|----------|----------------|-------------------|
-| Respostas longas | Sem limite explícito | Defina max_tokens e peça no prompt |
-| Respostas curtas | max_tokens baixo | Aumente limite, peça detalhes |
-| Formato inconsistente | Temperatura alta | Use temp=0, few-shot |
-| Alucinações | Modelo "criativo" | Limite ao texto, temp baixa |
-| Loop de repetição | Temperatura extrema | Ajuste para 0.3-0.7 |
-| Ignora instruções | Instruções bury | Coloque no início, sistema prompt |
+| Problema | Causa Provável | Solução |
+|----------|----------------|---------|
+| Muito longo | Sem limite | max_tokens + "seja conciso" |
+| Muito curto | Limite baixo | Aumentar max_tokens |
+| Formato ruim | Sem exemplos | Few-shot |
+| Alucinação | Sem restrição | "Apenas do texto" + temp baixa |
+| Loop | Temp extrema | Ajustar para 0.3-0.7 |
+| Ignora | Posição | Instruções no início |
 
 ---
 

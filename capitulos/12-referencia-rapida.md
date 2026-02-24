@@ -1,120 +1,107 @@
-# 11 - Troubleshooting
+# 12 - Referência Rápida
 
-[← Templates](10-templates.md) | [Próximo: Referência Rápida →](12-referencia-rapida.md)
-
----
-
-## Respostas Muito Longas
-
-**Causas:**
-- Sem limite de tokens
-- Prompt vago
-- Temperatura alta
-
-**Soluções:**
-```
-✅ "Seja conciso (máx. 100 palavras)"
-✅ Reduza max_tokens
-✅ Peça bullet points
-✅ Temperatura mais baixa
-```
+[← Troubleshooting](11-troubleshooting.md) | [Voltar ao Sumário →](00-sumario.md)
 
 ---
 
-## Respostas Muito Curtas
+## Técnicas por Tarefa
 
-**Causas:**
-- max_tokens muito baixo
-- Sem solicitação de detalhes
-
-**Soluções:**
-```
-✅ "Responda em detalhes"
-✅ Aumente max_tokens
-✅ "Explique seu raciocínio"
-✅ Use CoT
-```
-
----
-
-## Formato Inconsistente
-
-**Causas:**
-- Sem exemplos
-- Formato mal especificado
-
-**Soluções:**
-```
-✅ Adicione exemplos few-shot
-✅ Use delimitadores no formato
-✅ "Retorne APENAS o JSON"
-✅ Seja mais específico
-```
+| Tarefa | Técnicas |
+|--------|----------|
+| Classificação | Zero-shot, Few-shot |
+| Extração | Few-shot, JSON |
+| Resumo | Sistema, Contexto |
+| Raciocínio | CoT, Step-back |
+| Criatividade | Papel, Temperatura alta |
+| Código | Sistema, CoT |
+| Análise | Papel, CoT, Step-back |
+| Conversação | Sistema, Papel, Contexto |
 
 ---
 
-## Alucinações
+## Configurações por Tarefa
 
-**Causas:**
-- Sem restrições
-- Temperatura alta
-- Modelo inventa
-
-**Soluções:**
-```
-✅ "Responda apenas com informações do texto"
-✅ "Se não souber, diga 'Não disponível'"
-✅ Reduza temperatura (0-0.3)
-✅ Peça citações/fontes
-```
+| Tarefa | Temperatura | Top-P | Top-K |
+|--------|-------------|-------|-------|
+| Fatos/Código | 0 | 0.9 | 20 |
+| Classificação | 0.1 | 0.9 | 20 |
+| Resumo | 0.2 | 0.95 | 30 |
+| Conversação | 0.5 | 0.95 | 40 |
+| Criatividade | 0.8 | 0.99 | 50 |
 
 ---
 
-## Loop de Repetição
+## Frases Mágicas
 
-**Causas:**
-- Temperatura muito baixa OU muito alta
-- Top-K muito baixo
+| Objetivo | Frase |
+|----------|-------|
+| Ativar CoT | `"Vamos pensar passo a passo."` |
+| Evitar alucinação | `"Se não estiver no texto, responda 'Não disponível'."` |
+| Garantir formato | `"Retorne APENAS o JSON, sem texto adicional."` |
+| Melhor raciocínio | `"Pense cuidadosamente antes de responder."` |
+| Auto-verificação | `"Verifique sua resposta antes de finalizar."` |
+| Ser conciso | `"Seja conciso. Máximo 100 palavras."` |
+| Formato específico | `"Responda no formato: [exemplo]"` |
 
-**Soluções:**
+---
+
+## Estrutura de Prompt
+
 ```
-✅ Ajuste temperatura para 0.3-0.7
-✅ Aumente top-K
-✅ Limite max_tokens
-✅ Reformule o prompt
+[PAPEL - opcional]
+Você é um {papel}.
+
+[CONTEXTO]
+{informações relevantes}
+
+[TAREFA]
+{descrição clara do que fazer}
+
+[FORMATO]
+{como deve ser a saída}
+
+[RESTRIÇÕES - opcional]
+{limitações}
+
+[EXEMPLOS - opcional]
+{few-shot examples}
 ```
 
 ---
 
-## Ignora Instruções
+## Delimitadores
 
-**Causas:**
-- Instruções no lugar errado
-- Prompt muito longo
-- Instruções conflitantes
+| Tipo | Uso |
+|------|-----|
+| `---` | Separar seções |
+| `"""` | Texto longo |
+| ``` ``` ``` | Código |
+| `<tag></tag>` | Estrutura XML |
+| `###` | Cabeçalhos |
 
-**Soluções:**
+---
+
+## Checklist Rápido
+
 ```
-✅ Coloque instruções no início
-✅ Use prompt de sistema
-✅ Seja mais explícito
-✅ Use delimitadores
-✅ Reduza tamanho do prompt
+✅ Tarefa clara?
+✅ Formato especificado?
+✅ Contexto suficiente?
+✅ Exemplos (se necessário)?
+✅ Temperatura adequada?
 ```
 
 ---
 
-## Tabela Resumo
+## Links Rápidos
 
-| Problema | Causa Provável | Solução |
-|----------|----------------|---------|
-| Muito longo | Sem limite | max_tokens + "seja conciso" |
-| Muito curto | Limite baixo | Aumentar max_tokens |
-| Formato ruim | Sem exemplos | Few-shot |
-| Alucinação | Sem restrição | "Apenas do texto" + temp baixa |
-| Loop | Temp extrema | Ajustar para 0.3-0.7 |
-| Ignora | Posição | Instruções no início |
+- [Introdução](01-introducao.md)
+- [Configurações](03-configuracoes.md)
+- [Zero-shot](tecnicas/01-zero-shot.md)
+- [CoT](tecnicas/07-cot.md)
+- [Templates](10-templates.md)
+- [Troubleshooting](11-troubleshooting.md)
 
 ---
 
-[Próximo: Referência Rápida →](12-referencia-rapida.md)
+[← Voltar ao Sumário](00-sumario.md)
