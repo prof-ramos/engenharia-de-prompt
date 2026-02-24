@@ -1,7 +1,6 @@
 # 🎯 Engenharia de Prompt - Guia Completo
 
-[![License](https://img.shields.io/badge/license-Educational-blue.svg)](LICENSE)
-[![Language](https://img.shields.io/badge/language-Portugu%C3%AAs-green.svg)]()
+> **Licença:** Educacional | **Idioma:** Português (Brasil)
 
 Documentação completa sobre engenharia de prompt para LLMs, baseada no whitepaper do Google/Gemini e expandida com práticas adicionais.
 
