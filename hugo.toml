@@ -1,0 +1,64 @@
+baseURL = 'https://prof-ramos.github.io/engenharia-de-prompt/'
+languageCode = 'pt-br'
+title = 'Engenharia de Prompt - Guia Completo'
+theme = 'PaperMod'
+
+[params]
+  defaultTheme = 'auto'
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = false
+  UseHugoToc = true
+
+[params.homeInfoParams]
+  Title = "🎯 Engenharia de Prompt"
+  Content = """
+Documentação completa sobre engenharia de prompt para LLMs.
+<br><br>
+Baseado no whitepaper do Google/Gemini e no curso "Real World Prompting" da Anthropic.
+"""
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/prof-ramos/engenharia-de-prompt"
+
+[menu]
+  [[menu.main]]
+    identifier = "fundamentos"
+    name = "Fundamentos"
+    url = "/fundamentos/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tecnicas"
+    name = "Técnicas"
+    url = "/tecnicas/"
+    weight = 20
+  [[menu.main]]
+    identifier = "aplicacoes"
+    name = "Aplicações"
+    url = "/aplicacoes/"
+    weight = 30
+  [[menu.main]]
+    identifier = "mundo-real"
+    name = "Mundo Real"
+    url = "/mundo-real/"
+    weight = 40
+  [[menu.main]]
+    identifier = "referencia"
+    name = "Referência"
+    url = "/referencia/"
+    weight = 50
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = 'monokai'
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
