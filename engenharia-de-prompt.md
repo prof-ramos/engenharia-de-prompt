@@ -949,3 +949,111 @@ Forneça exemplos específicos de padrões bons e problemáticos.
 
 *Documento baseado no whitepaper "Prompt Engineering" de Lee Boonstra, Google, Fevereiro de 2025*
 *Apêndice baseado em "Jailbreaking ChatGPT via Prompt Engineering: An Empirical Study" - Liu et al., 2024*
+
+---
+
+## Apêndice: Agent Skills
+
+*Baseado na documentação do Codex e OpenAI*
+
+Use agent skills para estender o Codex com capacidades específicas para tarefas. Uma skill empacota instruções, recursos e scripts opcionais para que o Codex possa seguir um fluxo de trabalho de forma confiável. Você pode compartilhar skills entre equipes ou com a comunidade. Skills são baseadas no [open agent skills standard](https://agentskills.io).
+
+### Estrutura de uma Skill
+
+Uma skill é um diretório com um arquivo `SKILL.md` mais scripts e recursos opcionais:
+
+```
+skill-name/
+├── SKILL.md                    # Obrigatório: instruções da skill
+├── scripts/                    # Opcional: scripts de automação
+│   └── run.sh
+├── templates/                  # Opcional: templates, recursos
+└── agents/
+    └── openai.yaml             # Opcional: aparência e dependências
+```
+
+### Como o Codex usa Skills
+
+O Codex pode ativar skills de duas formas:
+
+1. **Invocação explícita:** Inclua a skill diretamente no seu prompt. No CLI/IDE, execute `/skills` ou digite `$` para mencionar uma skill.
+2. **Invocação implícita:** O Codex pode escolher uma skill quando sua tarefa corresponde a `description` da skill.
+
+Como o matching implícito depende da `description`, escreva descrições com escopo e limites claros.
+
+### Criar uma Skill
+
+Use o criador integrado primeiro:
+
+```text
+$skill-creator
+```
+
+O criador pergunta o que a skill faz, quando deve ser acionada e se deve ser apenas instruções ou incluir scripts. Apenas instruções é o padrão.
+
+Você também pode criar uma skill manualmente criando uma pasta com um arquivo `SKILL.md`:
+
+```md
+---
+name: nome-da-skill
+description: Explique exatamente quando esta skill deve e não deve ser acionada.
+---
+
+Instruções da skill para o Codex seguir.
+```
+
+O Codex detecta mudanças nas skills automaticamente. Se uma atualização não aparecer, reinicie o Codex.
+
+### Onde salvar Skills
+
+O Codex lê skills de locais de repositório, usuário, admin e sistema. Para repositórios, o Codex escaneia `.agents/skills` em cada diretório do seu diretório de trabalho atual até a raiz do repositório. Se duas skills compartilham o mesmo `name`, o Codex não as mescla; ambas podem aparecer nos seletores de skill.
+
+| Escopo | Localização | Uso Sugerido |
+|--------|-------------|---------------|
+| `REPO` | `$CWD/.agents/skills` | Skills relevantes para a pasta de trabalho atual |
+| `REPO` | `$CWD/../.agents/skills` | Skills relevantes para o repositório |
+| `USER` | `~/.codex/skills` | Skills pessoais que se aplicam a qualquer repositório |
+| `ADMIN` | `/etc/codex/skills` | Skills do sistema/máquina |
+| `SYSTEM` | Empacotadas com Codex | Skills padrão da OpenAI |
+
+### Instalar Skills
+
+Para instalar skills além das integradas, use `$skill-installer`:
+
+```bash
+$skill-installer install the linear skill from the .experimental folder
+```
+
+### Metadados Opcionais (openai.yaml)
+
+```yaml
+interface:
+  display_name: "Nome de exibição opcional"
+  short_description: "Descrição de exibição opcional"
+  icon_small: "./assets/small-logo.svg"
+  icon_large: "./assets/large-logo.png"
+  brand_color: "#3B82F6"
+  default_prompt: "Prompt opcional para usar a skill com"
+
+policy:
+  allow_implicit_invocation: false
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "openaiDeveloperDocs"
+      description: "OpenAI Docs MCP server"
+```
+
+### Melhores Práticas
+
+- Mantenha cada skill focada em um único trabalho
+- Prefira instruções em vez de scripts, a menos que precise de comportamento determinístico
+- Escreva passos imperativos com inputs e outputs explícitos
+- Teste prompts contra a descrição da skill para confirmar o comportamento de acionamento correto
+
+### Recursos
+
+- [Especificação Agent Skills](https://agentskills.io/specification)
+- [Repositório de Skills OpenAI](https://github.com/openai/skills)
+- [ClawHub - Marketplace de Skills](https://clawhub.com)
