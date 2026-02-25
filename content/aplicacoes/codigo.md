@@ -24,9 +24,7 @@ Requisitos:
 ```
 Explique o código abaixo para um desenvolvedor {nível}:
 
-```{linguagem}
-{código}
-```
+[CÓDIGO AQUI]
 
 Cubra:
 1. O que o código faz (visão geral)
@@ -40,9 +38,7 @@ Cubra:
 ```
 Traduza este código de {linguagem A} para {linguagem B}:
 
-```{linguagem A}
-{código}
-```
+[CÓDIGO ORIGINAL]
 
 Mantenha:
 - A mesma lógica
@@ -55,12 +51,10 @@ Mantenha:
 ```
 O código abaixo apresenta erro:
 
-{erro/stack trace}
+[ERRO/STACK TRACE]
 
 Código:
-```{linguagem}
-{código}
-```
+[CÓDIGO COM BUG]
 
 Por favor:
 1. Identifique a causa
@@ -74,9 +68,7 @@ Por favor:
 ```
 Revise o código abaixo como engenheiro sênior:
 
-```{linguagem}
-{código}
-```
+[CÓDIGO]
 
 Avalie:
 - Legibilidade
