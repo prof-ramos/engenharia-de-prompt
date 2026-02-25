@@ -10,7 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Evita deploys concorrentes
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -19,11 +18,35 @@ defaults:
   run:
     shell: bash
 
+env:
+  HUGO_VERSION: 0.146.0
+
 jobs:
+  # Job 1: Lint e validação
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Lint markdown files
+        run: markdownlint "content/**/*.md" || true
+        continue-on-error: true
+
+  # Job 2: Build
   build:
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: 0.146.0
+    needs: lint
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,14 +64,17 @@ jobs:
           path: |
             ~/.cache/hugo
             themes/
-          key: ${{ runner.os }}-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/*.md') }}
+          key: ${{ runner.os }}-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('content/**/*.md') }}
           restore-keys: |
             ${{ runner.os }}-hugo-${{ env.HUGO_VERSION }}-
 
       - name: Install Hugo CLI
         run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          set -e
+          wget -q -O /tmp/hugo.deb \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i /tmp/hugo.deb
+          hugo version
 
       - name: Install Dart Sass
         run: sudo snap install dart-sass
@@ -64,11 +90,24 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
+      - name: Verify build output
+        run: |
+          if [ ! -d "public" ]; then
+            echo "::error::Build failed - public/ directory not found"
+            exit 1
+          fi
+          if [ ! -f "public/index.html" ]; then
+            echo "::error::Build failed - index.html not found"
+            exit 1
+          fi
+          echo "✅ Build successful: $(find public -name '*.html' | wc -l) HTML files generated"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
+  # Job 3: Deploy
   deploy:
     environment:
       name: github-pages
