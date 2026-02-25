@@ -3,6 +3,9 @@ languageCode = 'pt-br'
 title = 'Engenharia de Prompt - Guia Completo'
 theme = 'PaperMod'
 
+# Ignora warning de HTML raw em markdown
+ignoreLogs = ['warning-goldmark-raw-html']
+
 [params]
   defaultTheme = 'auto'
   ShowReadingTime = true

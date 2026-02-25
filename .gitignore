@@ -1,16 +1,24 @@
-# Hugo
+# Hugo build output
 /public/
 /resources/_gen/
 /.hugo_build.lock
 
-# OS
+# OS generated files
 .DS_Store
 Thumbs.db
+ehthumbs.db
 
-# Editor
+# Editor/IDE
 *.swp
 *.swo
 *~
+.idea/
+.vscode/
+*.sublime-*
 
-# Dependencies
+# Node.js (se houver)
 /node_modules/
+package-lock.json
+
+# Logs
+*.log

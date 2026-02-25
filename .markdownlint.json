@@ -1,13 +1,34 @@
 {
+  "$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json",
   "default": true,
+  
   "MD013": false,
+  "_MD013_comment": "Desabilitado: português tem palavras mais longas que inglês",
+  
   "MD022": false,
+  "_MD022_comment": "Desabilitado: permite formatação compacta",
+  
   "MD024": false,
+  "_MD024_comment": "Desabilitado: exemplos repetem títulos como 'Exemplo', 'Prompt'",
+  
   "MD026": { "punctuation": ",;!" },
+  "_MD026_comment": "Permite : e . no final de títulos",
+  
   "MD028": false,
+  "_MD028_comment": "Desabilitado: permite blank lines em blockquotes",
+  
   "MD031": false,
+  "_MD031_comment": "Desabilitado: templates de prompt precisam de formatação específica",
+  
   "MD032": false,
+  "_MD032_comment": "Desabilitado: listas em templates de prompt",
+  
   "MD036": false,
+  "_MD036_comment": "Desabilitado: permite ênfase como separador visual",
+  
   "MD040": false,
-  "MD060": false
+  "_MD040_comment": "Desabilitado: prompts de código sem linguagem especificada",
+  
+  "MD060": false,
+  "_MD060_comment": "Desabilitado: permite tabelas compactas"
 }
